@@ -70,5 +70,5 @@ Vagrant.configure("2") do |config|
   config.vm.box = "ubuntu/xenial64"
   config.vm.network "private_network", type: "dhcp"
   config.vm.provision :shell, path: "bootstrap/setup.sh"
-  config.vm.synced_folder "public_html/", "/var/www/public_html"
+  config.vm.synced_folder "site.dev", "/var/www/site.dev/"
 end
