@@ -5,6 +5,6 @@
     <title>Dev Test</title>
   </head>
   <body>
-    <h1>Dev Test</h1>
+    <?php phpinfo(); ?>
   </body>
 </html>
