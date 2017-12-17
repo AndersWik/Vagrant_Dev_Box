@@ -1,6 +1,14 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+if ENV['DEV_SITE']
+  sitename = ENV['DEV_SITE']
+else
+  sitename = "site.dev"
+end
+
+hostname = "sitename".gsub! '.', '-'
+
 # All Vagrant configuration is done below. The "2" in Vagrant.configure
 # configures the configuration version (we support older styles for
 # backwards compatibility). Please don't change it unless you know what
@@ -67,8 +75,10 @@ Vagrant.configure("2") do |config|
   #   apt-get update
   #   apt-get install -y apache2
   # SHELL
+
   config.vm.box = "ubuntu/xenial64"
   config.vm.network "private_network", type: "dhcp"
-  config.vm.provision :shell, path: "bootstrap/setup.sh"
-  config.vm.synced_folder "site.dev", "/var/www/site.dev/"
+  config.vm.hostname = hostname
+  config.vm.provision :shell, path: "bootstrap/setup.sh", args: sitename
+  config.vm.synced_folder "site", "/var/www/site/"
 end
