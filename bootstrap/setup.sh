@@ -9,3 +9,13 @@ for FILE in $URL; do
     $FILE $1
   fi
 done
+
+FRAMEWORK=$(sudo php /vagrant/bootstrap/sitehelper.php getframework)
+
+if [ $FRAMEWORK="wordpress" ] | [ $FRAMEWORK="wp" ]
+then
+  sudo /vagrant/bootstrap/frameworks/wordpress.sh
+elif [ $FRAMEWORK="laravel" ]
+then
+  sudo /vagrant/bootstrap/frameworks/laravel.sh
+fi
