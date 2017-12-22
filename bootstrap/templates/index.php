@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Dev Test</title>
+    <title>site.dev</title>
   </head>
   <body>
     <?php phpinfo(); ?>

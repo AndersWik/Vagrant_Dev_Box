@@ -6,6 +6,6 @@ sudo apt-get update
 URL=/vagrant/bootstrap/scripts/*.sh
 for FILE in $URL; do
   if [ -f $FILE ] && [ -x $FILE ]; then
-    $FILE
+    $FILE $1
   fi
 done

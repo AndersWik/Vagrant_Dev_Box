@@ -1,5 +1,29 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
+require 'json'
+
+sitename = "site.dev"
+hostname = "site-dev"
+path = "bootstrap/keys.json"
+
+if File.file?(path)
+
+  file = File.open(path, "rb")
+  contents = file.read
+  file.close
+
+  if contents != ""
+    json = JSON.parse(contents)
+
+    if json["domain"] != ""
+      sitename = json["domain"]
+    end
+
+    if json["host"] != ""
+      hostname = json["host"]
+    end
+  end
+end
 
 # All Vagrant configuration is done below. The "2" in Vagrant.configure
 # configures the configuration version (we support older styles for
@@ -67,8 +91,10 @@ Vagrant.configure("2") do |config|
   #   apt-get update
   #   apt-get install -y apache2
   # SHELL
+
   config.vm.box = "ubuntu/xenial64"
   config.vm.network "private_network", type: "dhcp"
-  config.vm.provision :shell, path: "bootstrap/setup.sh"
-  config.vm.synced_folder "site.dev", "/var/www/site.dev/"
+  config.vm.hostname = hostname
+  config.vm.provision :shell, path: "bootstrap/setup.sh", args: sitename
+  config.vm.synced_folder "site", "/var/www/site/"
 end
