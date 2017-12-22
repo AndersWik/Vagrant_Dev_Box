@@ -1,9 +1,10 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
+require 'json'
 
 sitename = "site.dev"
 hostname = "site-dev"
-path = "bootstrap/keys"
+path = "bootstrap/keys.json"
 
 if File.file?(path)
 
@@ -12,11 +13,16 @@ if File.file?(path)
   file.close
 
   if contents != ""
-    sitename = contents.gsub("\n",'')
-    replace = { '.' => '-' }
-    hostname = sitename.chars.map { |c| replace.key?(c) ? replace[c] : c }.join
-  end
+    json = JSON.parse(contents)
 
+    if json["domain"] != ""
+      sitename = json["domain"]
+    end
+
+    if json["host"] != ""
+      hostname = json["host"]
+    end
+  end
 end
 
 # All Vagrant configuration is done below. The "2" in Vagrant.configure

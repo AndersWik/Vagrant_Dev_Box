@@ -1,27 +1,19 @@
 #!/bin/bash
 
 # Virtualhost
-FROM=/vagrant/bootstrap/templates/site.dev.conf
-TO=/etc/apache2/sites-available/site.dev.conf
-
-if [ -n "$1" ]; then
- sudo sed "s/site.dev/$1/g" $FROM > $TO
-else
- sudo cp -v $FROM $TO
-fi
+SITECONFTO=/etc/apache2/sites-available/site.dev.conf
+SITECONF=$(sudo php /vagrant/bootstrap/sitehelper.php getsiteconf)
+sudo tee $SITECONFTO <<< "$SITECONF"
 
 sudo a2ensite site.dev.conf
 sudo service apache2 restart
 
-FROM=/vagrant/bootstrap/templates/dir.conf
-TO=/etc/apache2/mods-enabled/dir.conf
-
-sudo cp -v $FROM $TO
+DIRCONFTO=/etc/apache2/mods-enabled/dir.conf
+DIRCONF=$(sudo php /vagrant/bootstrap/sitehelper.php getdirconf)
+sudo tee $DIRCONFTO <<< "$DIRCONF"
 
 sudo systemctl restart apache2
 
-if [ -n "$1" ]; then
- FROM=/vagrant/bootstrap/templates/index.php
- TO=/var/www/site/public_html/index.php
- sudo sed "s/site.dev/$1/g" $FROM > $TO
-fi
+INDEXTO=/var/www/site/public_html/index.php
+INDEX=$(sudo php /vagrant/bootstrap/sitehelper.php getindex)
+sudo tee $INDEXTO <<< "$INDEX"

@@ -10,7 +10,7 @@ function helpMenu {
 }
 
 if [ "$selection" = "-s" ] || [ "$selection" = "-site" ]; then
-    echo $2 > bootstrap/keys
+    php bootstrap/sitehelper.php setdomainandhost $2
     vagrant up --provision
 elif [ "$selection" = "-h" ] || [ "$selection" = "-help" ]; then
     helpMenu

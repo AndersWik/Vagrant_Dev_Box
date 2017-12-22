@@ -9,5 +9,3 @@ for FILE in $URL; do
     $FILE $1
   fi
 done
-
-# /vagrant/bootstrap/scripts/05virtualhost.sh $1
