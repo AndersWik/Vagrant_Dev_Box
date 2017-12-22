@@ -1,13 +1,23 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-if ENV['DEV_SITE']
-  sitename = ENV['DEV_SITE']
-else
-  sitename = "site.dev"
-end
+sitename = "site.dev"
+hostname = "site-dev"
+path = "bootstrap/keys"
 
-hostname = "sitename".gsub! '.', '-'
+if File.file?(path)
+
+  file = File.open(path, "rb")
+  contents = file.read
+  file.close
+
+  if contents != ""
+    sitename = contents.gsub("\n",'')
+    replace = { '.' => '-' }
+    hostname = sitename.chars.map { |c| replace.key?(c) ? replace[c] : c }.join
+  end
+
+end
 
 # All Vagrant configuration is done below. The "2" in Vagrant.configure
 # configures the configuration version (we support older styles for

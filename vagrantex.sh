@@ -10,7 +10,8 @@ function helpMenu {
 }
 
 if [ "$selection" = "-s" ] || [ "$selection" = "-site" ]; then
-    DEV_SITE=$2 vagrant up --provision
+    echo $2 > bootstrap/keys
+    vagrant up --provision
 elif [ "$selection" = "-h" ] || [ "$selection" = "-help" ]; then
     helpMenu
 else
