@@ -15,9 +15,11 @@ class SiteHelper {
 
     setdomain         Set domain to be configured
     getdomain         Get configured domain
-    setHost           Set hostname to be configured
-    getHost           Get configured hostname
+    sethost           Set hostname to be configured
+    gethost           Get configured hostname
     setdomainandhost  Set domain and host
+    setframework      Set framework to be configured
+    getframework      Get configured framework
     getdirconf        Get content for dir.conf file
     getindex          Get content for index file
     getsiteconf       Get content for virtual host file
@@ -132,15 +134,21 @@ USAGE;
     } elseif($args['key'] == "getdomain") {
       echo $this->getKey("domain");
 
-    } elseif($args['key'] == "setHost") {
+    } elseif($args['key'] == "sethost") {
       $this->setKey("host", $args['value']);
 
-    } elseif($args['key'] == "getHost") {
+    } elseif($args['key'] == "gethost") {
       echo $this->getKey("host");
 
     } elseif($args['key'] == "setdomainandhost") {
       $this->setKey("domain", $args['value']);
       $this->setKey("host", str_replace(".", "-", $args['value']));
+
+    } elseif($args['key'] == "setframework") {
+      $this->setKey("framework", $args['value']);
+
+    } elseif($args['key'] == "getframework") {
+      echo $this->getKey("framework");
 
     } elseif($args['key'] == "getdirconf") {
       echo $this->getDirConf();
