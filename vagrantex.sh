@@ -9,7 +9,7 @@ function helpMenu {
   -h -help      Show help menu"
 }
 
-RUN="0"
+RUN="-1"
 
 while getopts ":f:s:hr" opt; do
   case $opt in
@@ -20,7 +20,7 @@ while getopts ":f:s:hr" opt; do
       php bootstrap/sitehelper.php setframework ${OPTARG}
       ;;
     r)
-      $RUN="-1"
+      RUN="0"
       ;;
     h)
       helpMenu
