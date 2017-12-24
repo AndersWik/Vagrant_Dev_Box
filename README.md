@@ -59,6 +59,7 @@ Example:
 Install a framework in public html. By default no framework is installed.
 
 * Wordpress (wordpress | wp)
+* Wordpress with Composer (wordpress-composer | wp-composer)
 
 Example:
 

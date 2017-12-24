@@ -6,6 +6,7 @@ function helpMenu {
   -s -site      Define site name ex: site.dev
   -f -framework Add framework to public html
                 * Wordpress (wordpress | wp)
+                * Wordpress Bedrock (wordpress-composer | wp-composer)
   -h -help      Show help menu"
 }
 

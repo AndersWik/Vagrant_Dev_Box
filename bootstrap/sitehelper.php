@@ -8,6 +8,7 @@ class SiteHelper {
   const INDEX = __DIR__.'/templates/index.php';
   const SITECONF = __DIR__.'/templates/site.dev.conf';
   const APACHECONF = __DIR__.'/templates/apache2.conf';
+  const ENV = __DIR__.'/templates/wordpress/.env';
 
   private function getUsageHelp() {
 
@@ -115,6 +116,9 @@ USAGE;
 
       $path = "/var/www/site/wordpress";
 
+    } elseif ($framework == "wordpress-composer" || $framework == "wp-composer") {
+
+      $path = "/var/www/site/bedrock/web";
     }
 
     return $path;

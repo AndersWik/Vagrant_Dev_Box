@@ -15,6 +15,9 @@ FRAMEWORK=$(sudo php /vagrant/bootstrap/sitehelper.php getframework)
 if [ "$FRAMEWORK" == "wordpress" ] | [ "$FRAMEWORK" == "wp" ]
 then
   sudo /vagrant/bootstrap/frameworks/wordpress.sh
+elif [ "$FRAMEWORK" == "wordpress-composer" ] | [ "$FRAMEWORK" == "wp-composer" ]
+then
+  sudo /vagrant/bootstrap/frameworks/wp-composer.sh
 elif [ "$FRAMEWORK" == "laravel" ]
 then
   sudo /vagrant/bootstrap/frameworks/laravel.sh
