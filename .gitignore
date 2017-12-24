@@ -1,4 +1,4 @@
 .DS_Store
 .vagrant/
 bootstrap/keys.json
-/site/public_html/
+/site/

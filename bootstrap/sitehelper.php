@@ -1,13 +1,16 @@
 <?php
 class SiteHelper {
 
-  const DOMAIN = 'site.dev';
+  const DOMAIN = '{{server.name}}';
+  const ROOT = '{{document.root}}';
   const KEYS = __DIR__.'/keys.json';
   const DIRCONF = __DIR__.'/templates/dir.conf';
   const INDEX = __DIR__.'/templates/index.php';
   const SITECONF = __DIR__.'/templates/site.dev.conf';
+  const APACHECONF = __DIR__.'/templates/apache2.conf';
+  const ENV = __DIR__.'/templates/wordpress/.env';
 
-  public function getUsageHelp() {
+  private function getUsageHelp() {
 
     echo <<<USAGE
 
@@ -57,17 +60,17 @@ USAGE;
     }
   }
 
-  public function getJSON($path = "") {
+  private function getJSON($path = "") {
 
     return json_decode($this->getFile($path), true);
   }
 
-  public function setJSON($path = "", $content = "") {
+  private function setJSON($path = "", $content = "") {
 
     $this->setFile($path, json_encode($content));
   }
 
-  public function getKey($key = "") {
+  private function getKey($key = "") {
 
     $value = "";
     $content = $this->getJSON(SiteHelper::KEYS);
@@ -78,31 +81,11 @@ USAGE;
     return $value;
   }
 
-  public function setKey($key = "", $value = "") {
+  private function setKey($key = "", $value = "") {
 
     $content = $this->getJSON(SiteHelper::KEYS);
     $content[$key] = $value;
     $this->setJSON(SiteHelper::KEYS, $content);
-  }
-
-  public function getDirConf() {
-
-    $content = $this->getFile(SiteHelper::DIRCONF);
-    return $content;
-  }
-
-  public function getIndex() {
-
-    $content = $this->getFile(SiteHelper::INDEX);
-    $content = str_replace(SiteHelper::DOMAIN, $this->getKey("domain"), $content);
-    return $content;
-  }
-
-  public function getSiteConf() {
-
-    $content = $this->getFile(SiteHelper::SITECONF);
-    $content = str_replace(SiteHelper::DOMAIN, $this->getKey("domain"), $content);
-    return $content;
   }
 
   private function getArgs() {
@@ -124,6 +107,23 @@ USAGE;
     return $array;
   }
 
+  private function getPath() {
+
+    $framework = $this->getKey("framework");
+    $path = "/var/www/site/public_html";
+
+    if($framework == "wordpress" || $framework == "wp") {
+
+      $path = "/var/www/site/wordpress";
+
+    } elseif ($framework == "wordpress-composer" || $framework == "wp-composer") {
+
+      $path = "/var/www/site/bedrock/web";
+    }
+
+    return $path;
+  }
+
   public function run() {
 
     $args = $this->getArgs();
@@ -135,14 +135,10 @@ USAGE;
       echo $this->getKey("domain");
 
     } elseif($args['key'] == "sethost") {
-      $this->setKey("host", $args['value']);
+      $this->setKey("host", str_replace(".", "-", $args['value']));
 
     } elseif($args['key'] == "gethost") {
       echo $this->getKey("host");
-
-    } elseif($args['key'] == "setdomainandhost") {
-      $this->setKey("domain", $args['value']);
-      $this->setKey("host", str_replace(".", "-", $args['value']));
 
     } elseif($args['key'] == "setframework") {
       $this->setKey("framework", $args['value']);
@@ -151,13 +147,28 @@ USAGE;
       echo $this->getKey("framework");
 
     } elseif($args['key'] == "getdirconf") {
-      echo $this->getDirConf();
+      $content = $this->getFile(SiteHelper::DIRCONF);
+      echo $content;
 
     } elseif($args['key'] == "getindex") {
-      echo $this->getIndex();
+      $content = $this->getFile(SiteHelper::INDEX);
+      $content = str_replace(SiteHelper::DOMAIN, $this->getKey("domain"), $content);
+      echo $content;
 
     } elseif($args['key'] == "getsiteconf") {
-      echo $this->getSiteConf();
+      $content = $this->getFile(SiteHelper::SITECONF);
+      $content = str_replace(SiteHelper::DOMAIN, $this->getKey("domain"), $content);
+      $content = str_replace(SiteHelper::ROOT, $this->getPath(), $content);
+      echo $content;
+
+    } elseif($args['key'] == "getapacheconf") {
+      $content = $this->getFile(SiteHelper::APACHECONF);
+      echo $content;
+
+    } elseif($args['key'] == "getenv") {
+      $content = $this->getFile(SiteHelper::ENV);
+      $content = str_replace(SiteHelper::DOMAIN, $this->getKey("domain"), $content);
+      echo $content;
 
     } else {
       $this->getUsageHelp();

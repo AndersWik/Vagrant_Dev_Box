@@ -10,6 +10,17 @@ EOF
 sudo apt-get install php-mysql <<EOF
 Y
 EOF
+
+# Installing XML for PHP
+sudo apt-get install php-xml <<EOF
+Y
+EOF
+
+# Installing Zip for PHP
+apt-get install php-zip <<EOF
+Y
+EOF
+
 # Enabling
 a2enmod php7.0
 # Restart Apache2
