@@ -108,7 +108,16 @@ USAGE;
 
   private function getPath() {
 
-    return "/var/www/site/public_html";
+    $framework = $this->getKey("framework");
+    $path = "/var/www/site/public_html";
+
+    if($framework == "wordpress" || $framework == "wp") {
+
+      $path = "/var/www/site/wordpress";
+
+    }
+
+    return $path;
   }
 
   public function run() {
@@ -150,6 +159,11 @@ USAGE;
 
     } elseif($args['key'] == "getapacheconf") {
       $content = $this->getFile(SiteHelper::APACHECONF);
+      echo $content;
+
+    } elseif($args['key'] == "getenv") {
+      $content = $this->getFile(SiteHelper::ENV);
+      $content = str_replace(SiteHelper::DOMAIN, $this->getKey("domain"), $content);
       echo $content;
 
     } else {
