@@ -14,7 +14,8 @@ RUN="-1"
 while getopts ":f:s:hr" opt; do
   case $opt in
     s)
-      php bootstrap/sitehelper.php setdomainandhost ${OPTARG}
+      php bootstrap/sitehelper.php setdomain ${OPTARG}
+      php bootstrap/sitehelper.php sethost ${OPTARG}
       ;;
     f)
       php bootstrap/sitehelper.php setframework ${OPTARG}

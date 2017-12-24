@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>site.dev</title>
+    <title>{{server.name}}</title>
   </head>
   <body>
     <?php phpinfo(); ?>
