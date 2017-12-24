@@ -7,6 +7,7 @@ class SiteHelper {
   const DIRCONF = __DIR__.'/templates/dir.conf';
   const INDEX = __DIR__.'/templates/index.php';
   const SITECONF = __DIR__.'/templates/site.dev.conf';
+  const APACHECONF = __DIR__.'/templates/apache2.conf';
 
   private function getUsageHelp() {
 
@@ -145,6 +146,10 @@ USAGE;
       $content = $this->getFile(SiteHelper::SITECONF);
       $content = str_replace(SiteHelper::DOMAIN, $this->getKey("domain"), $content);
       $content = str_replace(SiteHelper::ROOT, $this->getPath(), $content);
+      echo $content;
+
+    } elseif($args['key'] == "getapacheconf") {
+      $content = $this->getFile(SiteHelper::APACHECONF);
       echo $content;
 
     } else {
