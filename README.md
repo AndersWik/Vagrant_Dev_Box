@@ -5,6 +5,7 @@ Vagrant configuration for php development. Vagrant box with `Ubuntu Xenial64`. T
 * Apache2
 * Mysql
 * PHP
+* Composer
 
 ## Prerequisite
 
