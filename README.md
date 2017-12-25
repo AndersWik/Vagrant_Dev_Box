@@ -102,4 +102,4 @@ Help does not take any arguments. It will display the help menu.
 
 ## Extending
 
-All bash scripts in `/bootstrap/frameworks` will run on `vagrant provision`. Add additional scripts to be run on creation of the box here.
+All bash scripts in `/bootstrap/scripts` will run on `vagrant provision`. Add additional scripts to be run on creation of the box here.
