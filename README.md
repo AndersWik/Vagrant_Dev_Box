@@ -13,13 +13,19 @@ Vagrant configuration for php development. Vagrant box with `Ubuntu Xenial64`. T
 
 ## Installation
 
-To install the script clone down the project from git. In the folder type,
+To install the script clone down the project from github.
+
+``` php
+git clone https://github.com/AndersWik/Vagrant_Dev_Box.git
+```
+
+To create new boxes we can clone down a new project every time or in the `Vagrant_Dev_Box` folder type,
 
 ``` bash
 sudo ./install.sh
 ```
 
-This will add a `devboxinit` script to `/usr/local/bin/`. Then the script can be called from anywhere. To call the script type,
+This will add a `devboxinit` script to `/usr/local/bin/`. Then the script can be called from anywhere. To clone down new instances of the project after that type,
 
 ``` bash
 devboxinit
@@ -33,16 +39,10 @@ devboxinit -f mydevbox
 
 ## Usage
 
-Clone the project from github.
-
-``` php
-git clone https://github.com/AndersWik/Vagrant_Dev_Box.git
-```
-
 To initialize a local site with the domain `dev.test` and with `wordpress` installed type:
 
 ``` php
-$ ./vagrantex.sh -f wordpress -s dev.test -r
+$ ./devbox -f wordpress -s dev.test -r
 ```
 
 For the moment the ip needs to be added to the host file manually. SSH in to the guest machine and run ifconfig.
@@ -72,7 +72,7 @@ The default value is `site.dev`.
 
 Example:
 ``` php
-./vagrantex.sh -s mysite.dev
+./devbox -s mysite.dev
 ```
 
 ### Framework (-f)
@@ -86,7 +86,7 @@ Install a framework in public html. By default no framework is installed.
 Example:
 
 ``` php
-$ ./vagrantex.sh -f wordpress
+$ ./devbox -f wordpress
 ```
 
 ### Run (-r)
