@@ -6,7 +6,7 @@ MSG='#!/bin/bash
 DIR=""
 while getopts ":d:" opt; do
   case $opt in
-    f)
+    d)
       DIR=${OPTARG}
       ;;
   esac
