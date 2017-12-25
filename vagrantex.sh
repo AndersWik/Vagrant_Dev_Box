@@ -7,6 +7,7 @@ function helpMenu {
   -f -framework Add framework to public html
                 * Wordpress (wordpress | wp)
                 * Wordpress Bedrock (wordpress-composer | wp-composer)
+                * Laravel (laravel)
   -h -help      Show help menu"
 }
 
