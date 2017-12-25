@@ -4,7 +4,7 @@ FILE="devboxinit"
 PATH="/usr/local/bin/"
 MSG='#!/bin/bash
 DIR=""
-while getopts ":f:" opt; do
+while getopts ":d:" opt; do
   case $opt in
     f)
       DIR=${OPTARG}

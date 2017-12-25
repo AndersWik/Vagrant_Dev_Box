@@ -32,10 +32,10 @@ This will add a `devboxinit` script to `/usr/local/bin/`. Then the script can be
 devboxinit
 ```
 
-The script will `git clone` down a new `Vagrant_Dev_Box` project. An optional `-f` option can be set to define what folder the project will be cloned to.
+The script will `git clone` down a new `Vagrant_Dev_Box` project. An optional `-d` option can be set to define what folder the project will be cloned to.
 
 ``` bash
-devboxinit -f mydevbox
+devboxinit -d mydevbox
 ```
 
 ## Usage
