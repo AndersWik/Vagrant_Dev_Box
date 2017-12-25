@@ -8,7 +8,28 @@ Vagrant configuration for php development. Vagrant box with `Ubuntu Xenial64`. T
 
 ## Prerequisite
 
+* Git installed
 * Vagrant installed
+
+## Installation
+
+To install the script clone down the project from git. In the folder type,
+
+``` bash
+sudo ./install.sh
+```
+
+This will add a `devboxinit` script to `/usr/local/bin/`. Then the script can be called from anywhere. To call the script type,
+
+``` bash
+devboxinit
+```
+
+The script will `git clone` down a new `Vagrant_Dev_Box` project. An optional `-f` option can be set to define what folder the project will be cloned to.
+
+``` bash
+devboxinit -f mydevbox
+```
 
 ## Usage
 
