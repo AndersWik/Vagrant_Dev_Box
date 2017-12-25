@@ -119,6 +119,10 @@ USAGE;
     } elseif ($framework == "wordpress-composer" || $framework == "wp-composer") {
 
       $path = "/var/www/site/bedrock/web";
+
+    } elseif ($framework == "laravel") {
+
+      $path = "/var/www/site/laravel/public";
     }
 
     return $path;
