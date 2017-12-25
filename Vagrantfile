@@ -96,5 +96,7 @@ Vagrant.configure("2") do |config|
   config.vm.network "private_network", type: "dhcp"
   config.vm.hostname = hostname
   config.vm.provision :shell, path: "bootstrap/setup.sh", args: sitename
-  config.vm.synced_folder "site", "/var/www/site/"
+  config.vm.synced_folder "site", "/var/www/site/",
+    group: "www-data",
+    mount_options: ["dmode=775,fmode=664"]
 end

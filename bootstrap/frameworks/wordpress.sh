@@ -17,8 +17,3 @@ GRANT ALL PRIVILEGES ON wordpress.* TO 'wordpress'@'localhost';
 FLUSH PRIVILEGES;
 EXIT
 EOF
-
-# Temporary permissions
-sudo chgrp www-data /var/www
-sudo chmod -R 775 /var/www
-sudo chmod -R g+s /var/www
