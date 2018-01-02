@@ -1,6 +1,6 @@
 #!/bin/bash
 
-FILE="devboxinit"
+FILE="devboxphp"
 PATH="/usr/local/bin/"
 MSG='#!/bin/bash
 DIR=""
