@@ -26,16 +26,16 @@ To create new boxes we can clone down a new project every time or in the `Vagran
 sudo ./install.sh
 ```
 
-This will add a `devboxinit` script to `/usr/local/bin/`. Then the script can be called from anywhere. To clone down new instances of the project after that type,
+This will add a `devboxphp` script to `/usr/local/bin/`. Then the script can be called from anywhere. To clone down new instances of the project after that type,
 
 ``` bash
-devboxinit
+devboxphp
 ```
 
 The script will `git clone` down a new `Vagrant_Dev_Box` project. An optional `-d` option can be set to define what folder the project will be cloned to.
 
 ``` bash
-devboxinit -d mydevbox
+devboxphp -d mydevbox
 ```
 
 ## Usage
